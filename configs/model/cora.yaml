@@ -1,0 +1,17 @@
+_target_: src.models.cora_litmodule.CoraLitModule
+
+net:
+  _target_: src.models.components.graph_net.GNNModel
+  c_in: 1433    # number of features on each node
+  c_hidden: 16
+  c_out: 7      # number of classes
+  num_layers: 2
+  dp_rate: 0.1
+  layer_name: "GCN"
+
+optimizer:
+  _target_: torch.optim.SGD
+  _partial_: true
+  lr: 0.1
+  momentum: 0.9
+  weight_decay: 2e-3
