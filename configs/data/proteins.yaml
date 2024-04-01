@@ -1,0 +1,6 @@
+_target_: src.data.proteins_datamodule.ProteinsDataModule
+data_dir: ${paths.data_dir}
+data_split: [0.6, 0.3, 0.1]
+batch_size: 64
+num_workers: 0
+pin_memory: False

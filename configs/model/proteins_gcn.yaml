@@ -1,0 +1,20 @@
+_target_: src.models.graph_prediction_litmodule.GraphPredictionLitModule
+
+net:
+  _target_: src.models.components.graph_prediction_model.GraphPredictionModel
+  c_out: 1         # the final prediction
+  dp_rate: 0.5
+
+  gnn_layers:
+    _target_: src.models.components.gcn_layers.GCNLayers
+    c_in: 3        # PROTEINS.num_node_features
+    c_hidden: 256
+    c_out: 256     # not the final prediction yet
+    num_layers: 3
+    dp_rate: 0.0   # no drop out from intermediate layers
+
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 1e-2
+  weight_decay: 0.0

@@ -95,10 +95,10 @@ class CoraDataModule(LightningDataModule):
         pass
 
     def train_dataloader(self) -> DataLoader:
-        return DataLoader(self.cora, batch_size=1)
+        return DataLoader(self.data_train, batch_size=1)
 
     def val_dataloader(self) -> DataLoader:
-        return DataLoader(self.cora, batch_size=1)
+        return DataLoader(self.data_val, batch_size=1)
 
     def test_dataloader(self) -> DataLoader:
-        return DataLoader(self.cora, batch_size=1)
+        return DataLoader(self.data_test, batch_size=1)
