@@ -1,0 +1,8 @@
+_target_: src.data.graph_datamodule.GraphDataModule
+data_dir: ${paths.data_dir}
+dataset: ???
+split: [0.6, 0.2, 0.2]
+split_seed: ${seed}
+batch_size: 64
+num_workers: 19
+pin_memory: false

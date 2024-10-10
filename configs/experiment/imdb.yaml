@@ -1,0 +1,48 @@
+# @package _global_
+
+# to execute this experiment run:
+# python src/train.py experiment=imbd
+
+defaults:
+  - override /data: graph_data
+  - override /model: graph_pred
+  - override /callbacks: default
+  - override /trainer: gpu
+  - override /logger: many_loggers
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags: ["imdb"]
+
+seed: 42
+
+# Note to instantiate the graph_data, it needs dataset.
+# The dataset comes from TUDataset with name = "IMDB-BINARY".
+# However, there is no features, so we create our own feature, which is the degree of the graph using OneHotDegree.
+# Maximum degree is set arbitrarily = max_degree. This will affect the number of features: max_degree + 1
+data:
+  dataset:
+    _target_: torch_geometric.datasets.TUDataset
+    root: ${paths.data_dir}
+    name: "IMDB-BINARY"
+    pre_transform:
+      _target_: torch_geometric.transforms.OneHotDegree
+      max_degree: 135
+
+model:
+  num_features: 136
+  num_classes: 2
+
+trainer:
+  min_epochs: 2
+  max_epochs: 100
+  log_every_n_steps: 1
+  check_val_every_n_epoch: 1
+
+logger:
+  csv:
+    prefix: "imbd_graph_net"
+
+# compile model for faster training with pytorch 2.0
+compile: true

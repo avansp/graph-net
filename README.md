@@ -11,11 +11,11 @@
 
 ## Description
 
-Machine learning with Graph Neural Network
+Graph Neural Network framework with [pytorch geometric](https://pytorch-geometric.readthedocs.io/en/latest/).
 
 ## Installation
 
-#### Pip
+<details><summary>Pip</summary>
 
 ```bash
 # clone project
@@ -23,8 +23,8 @@ git clone https://github.com/avansp/graph-net
 cd graph-net
 
 # [OPTIONAL] create conda environment
-conda create -n gnn python=3.9
-conda activate gnn
+conda create -n graphnet python=3.11
+conda activate graphnet
 
 # install pytorch according to instructions
 # https://pytorch.org/get-started/
@@ -33,7 +33,9 @@ conda activate gnn
 pip install -r requirements.txt
 ```
 
-#### Conda
+</details>
+
+<details><summary>Conda</summary>
 
 ```bash
 # clone project
@@ -41,11 +43,13 @@ git clone https://github.com/avansp/graph-net
 cd graph-net
 
 # create conda environment and install dependencies
-conda env create -f environment.yaml -n gnn
+conda env create -f environment.yaml -n graphnet
 
 # activate conda environment
-conda activate gnn
+conda activate graphnet
 ```
+
+</details>
 
 ## How to run
 
