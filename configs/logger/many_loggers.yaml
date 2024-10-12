@@ -3,3 +3,4 @@
 defaults:
   - csv
   - mlflow
+  - tensorboard

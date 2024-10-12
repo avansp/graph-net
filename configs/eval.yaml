@@ -2,9 +2,9 @@
 
 defaults:
   - _self_
-  - data: cora # choose datamodule with `test_dataloader()` for evaluation
-  - model: cora_gcn
-  - logger: many_loggers
+  - data: mutag
+  - model: graph_pred
+  - logger: csv
   - trainer: default
   - paths: default
   - extras: default
@@ -13,6 +13,14 @@ defaults:
 task_name: "eval"
 
 tags: ["dev"]
+
+seed: 1234
+
+# these are needed by the graph prediction of MUTAG data
+# see: https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.datasets.TUDataset.html
+model:
+  num_features: 7
+  num_classes: 2
 
 # passing checkpoint path is necessary for evaluation
 ckpt_path: ???
