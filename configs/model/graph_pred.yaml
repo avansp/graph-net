@@ -1,0 +1,30 @@
+_target_: src.models.graph_pred.GraphPrediction
+
+# depending on the datamodule, define explicitly in the experiment config
+num_features: ???
+num_classes: ???
+graph_net_out_channels: 64
+pooling: add
+mlp_dropout: 0.5
+mlp_norm: batch_norm
+
+graph_net:
+  _target_: torch_geometric.nn.GIN
+  _partial_: true
+  hidden_channels: ${model.graph_net_out_channels}
+  num_layers: 3
+  dropout: 0.5
+  jk: cat
+
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true # need to define params from the model
+  lr: 0.001
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+  _partial_: true
+  mode: min
+  factor: 0.1
+  patience: 10
+
